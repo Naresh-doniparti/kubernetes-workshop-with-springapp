@@ -15,6 +15,6 @@ public class HelloController {
 
     @GetMapping("/health")
     public ResponseEntity<Object> send500(){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

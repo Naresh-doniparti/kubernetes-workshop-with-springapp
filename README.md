@@ -30,11 +30,12 @@ DEPLOYMENT
 - Rolling out releases- we can use different rollout strategies for quickly rolling out a release in multiple pods.
    - rollingUpdate - Advantages: No downtime. Disadvantages: You will have both the old and new versions running in parallel for a period of time.  
    - Recreate - Advantages: Terminates all the old version pods before creating new version pods. Disadvantages: Downtime expected.
+   - blue/green - ? 
 - Mitigating bad releases 
      - Rolling back to the previous version manually
          kubectl rollout undo deployment <deployment name>
      - Automatic rollback using readinessProbe and livenessProbe
        readinessProbe - Check which considers the container as ready for accepting requests
-       livenessProble - Frequently checks the container availability. Restarts, if a POD is unhealthy
+       livenessProble - Frequently checks the container availability. Restarts a pod, if it is unhealthy
 
   
