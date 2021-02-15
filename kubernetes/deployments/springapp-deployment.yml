@@ -13,5 +13,15 @@ spec:
         app: helloapp
     spec:
       containers:
-      - image: nareshdoniparti/kubernetes-with-spring:v1
+      - image: nareshdoniparti/kubernetes-with-spring:buggy
         name: springhelloapp-container
+        readinessProbe:
+          periodSeconds: 1
+          successThreshold: 2
+          httpGet:
+            path: /health
+            port: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080

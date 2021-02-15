@@ -18,5 +18,23 @@ kubectl delete -f <yaml file>
 kubectl get pods
 kubectl get deployments
 
+- Kubernetes cluster works based on the master-slave concept. You can create a cluster with multiple machines, 
+where at least machine has to be a master, others can act as nodes
+- kubernetes master is the brain behind the framework which stores the metadata, delegate the work to the nodes/workers, 
+  managing the network in the cluster, etc.,
+POD
+- Application deployed as a POD cannot be recovered, if the POD goes down for any reason
+DEPLOYMENT  
+- Deployment is used for auto recovery. For example, you have created the kind as 'Deployment' with 2 replicas,
+- kubernetes runs an infinite loop at the background which continuously check if the 2 replicas of the POD are available
+- Rolling out releases- we can use different rollout strategies for quickly rolling out a release in multiple pods.
+   - rollingUpdate - Advantages: No downtime. Disadvantages: You will have both the old and new versions running in parallel for a period of time.  
+   - Recreate - Advantages: Terminates all the old version pods before creating new version pods. Disadvantages: Downtime expected.
+- Mitigating bad releases 
+     - Rolling back to the previous version manually
+         kubectl rollout undo deployment <deployment name>
+     - Automatic rollback using readinessProbe and livenessProbe
+       readinessProbe - Check which considers the container as ready for accepting requests
+       livenessProble - Frequently checks the container availability. Restarts, if a POD is unhealthy
 
   
