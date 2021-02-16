@@ -11,14 +11,15 @@ Added the following steps on top of it to create a custom image
 5. push the image to the docker hub
    * docker push <image name>
 
-kubectl apply -f <yaml file>
-kubectl logs --follow <pod name>
-kubectl exec <pod name> <linux command>
-kubectl delete -f <yaml file>
-kubectl get <nodes/pods/deployments/services>
-kubectl get/describe <type> <name>
+## Frequently used commands 
+`kubectl apply -f <yaml file>`
+`kubectl logs --follow <pod name>`
+`kubectl exec <pod name> <linux command>`
+`kubectl delete -f <yaml file>`
+`kubectl get <nodes/pods/deployments/services>`
+`kubectl get/describe <type> <name>`
 
-Installing CURL on openjdk images -  apk add --update && apk --no-cache add curl
+> Installing CURL on openjdk images -  apk add --update && apk --no-cache add curl
 
 - Kubernetes cluster works based on the master-slave concept. You can create a cluster with multiple machines, 
 where at least machine has to be a master, others can act as nodes
