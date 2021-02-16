@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: helloapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: helloapp
@@ -13,7 +13,7 @@ spec:
         app: helloapp
     spec:
       containers:
-      - image: nareshdoniparti/kubernetes-with-spring:buggy
+      - image: nareshdoniparti/kubernetes-with-spring:v3
         name: springhelloapp-container
         readinessProbe:
           periodSeconds: 1
