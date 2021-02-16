@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    #- host: hello.local.com
+    - http:
+        paths:
+        - path: /hello
+          backend:
+            serviceName: helloapp-svc
+            servicePort: 4567

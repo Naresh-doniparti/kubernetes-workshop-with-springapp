@@ -14,15 +14,21 @@ public class HelloController {
     @GetMapping("/hello")
     public String sayHello(){
         InetAddress ip = null;
+        String msg = System.getenv("MESSAGE");
         try {
             ip = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        if (ip != null)
-            return "Hello From RestController, V3, from "+ ip.getHostName();
-        else
+        if (ip != null) {
+            String response = "Hello From RestController, V4, from " + ip.getHostName();
+            if(msg != null)
+                response = msg+" From RestController, V4, from " + ip.getHostName();
+            return response;
+        }
+        else {
             return "Hello From RestController, V3, could not fetch the ip";
+        }
     }
 
     @GetMapping("/health")

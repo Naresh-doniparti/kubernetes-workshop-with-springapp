@@ -57,3 +57,16 @@ where at least machine has to be a master, others can act as nodes
 - service discovery can be done with service name via TCP. While creating the service, a service name entry gets created into kubernetes DNS. we can 
 access the service with http://<service name>:<application port>ig
   
+## INGRESS
+https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/baremetal/deploy.yaml
+kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --watch
+- Ingress sits before your services and routes the requests to services based on the rules defined in the ingress file. 
+- It kind of acts as a load balancer + router (routing requests to appropriate services based on rules). Rules can be based on the 
+http request path or  host name
+- Ingress type can't be used directly. You need to install a Controller implementation to make the Ingress work. We are using Nginx Controller here.
+
+## CONFIG MAP
+- It is used to pass environment variables to the container. 
+- ConfigMap is a type in kubernetes which is used to store key value pairs. 
+- You can also mount the configMap as files in the container. 
