@@ -22,7 +22,7 @@ public class HelloController {
         if (ip != null)
             return "Hello From RestController, V3, from "+ ip.getHostName();
         else
-            return "Hello From RestController, V3, could not fetch ip";
+            return "Hello From RestController, V3, could not fetch the ip";
     }
 
     @GetMapping("/health")
