@@ -72,8 +72,10 @@ https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/baremetal/deploy.yaml
 kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx --watch
 - Ingress sits before your services and routes the requests to services based on the rules defined in the ingress file. 
-- It kind of acts as a load balancer + router (routing requests to appropriate services based on rules). Rules can be based on the 
-http request path or  host name
+- It kind of acts as a load balancer + router (routing requests to appropriate services based on rules) which can be used to load balance 
+  multiple services. If we LoadBalancer as a service type, it creates a new load balancer for each service which is expensive compared to Ingress.
+
+- Rules can be based on the http request path or  host name
 - Ingress type can't be used directly. You need to install a Controller implementation to make the Ingress work. We are using Nginx Controller here.
 
 ## CONFIG MAP
