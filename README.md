@@ -43,17 +43,17 @@ where at least machine has to be a master, others can act as nodes
 ## SERVICE
 - provides an end point to pods
     - ClusterIp(Optional)
-        an endpoint which can only be accessed inside the cluster. creates a virtual IP which can be used by the members in the cluster. 
+      - an endpoint which can only be accessed inside the cluster. creates a virtual IP which can be used by the members in the cluster. 
     - NodePort
-        opens a port on all the nodes. Redirects the requests received on that port to the application PODs behind the service. 
-        Service to POD mapping is done using selector in the yaml. We use labels to identify Pods that we want to map for this service. 
-        This endpoint is exposed to the outside world.
+      - opens a port on all the nodes. Redirects the requests received on that port to the application PODs behind the service. 
+      - Service to POD mapping is done using selector in the yaml. We use labels to identify Pods that we want to map for this service. 
+      - This endpoint is exposed to the outside world.
     - LoadBalancer
-        creates a load balancer on the cloud environment where this service is running.
-        In addition to exposing the PODs, it will also add a load balancer which faces the external client and routes the request to the
+       - creates a load balancer on the cloud environment where this service is running.
+       - In addition to exposing the PODs, it will also add a load balancer which faces the external client and routes the request to the
     application PODs behind it in an evenly distributed manner.
     -ExternalName
-        provides an end point to an external service like DB, other third-party application etc., It avoids hardcoding the endpoints of external URLs 
+        - provides an end point to an external service like DB, other third-party application etc., It avoids hardcoding the endpoints of external URLs 
 - service discovery can be done with service name via TCP. While creating the service, a service name entry gets created into kubernetes DNS. we can 
 access the service with http://<service name>:<application port>ig
   
@@ -70,3 +70,17 @@ http request path or  host name
 - It is used to pass environment variables to the container. 
 - ConfigMap is a type in kubernetes which is used to store key value pairs. 
 - You can also mount the configMap as files in the container. 
+
+#SECRET
+- work in the same way as config maps. But, they will not be persisted. They will be stored encrypted in the master node. 
+- All the features that config map supports is supported by secret except the fact that the secret is stored in a secured manner.
+
+#JOB
+- Similar to deployment, used for running a specific task.
+- Container will be stopped once the task execution is completed, and the status of the container will be set as COMPLETED.
+- Job will also be marked as successful completion of tasks.
+- Other features
+    - Can run multiple tasks serially/parallel
+    - can restart the job if the container fails for some reason
+    - Ability to run scheduled jobs using CronJob resource
+
