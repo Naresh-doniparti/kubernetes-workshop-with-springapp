@@ -13,11 +13,20 @@ Added the following steps on top of it to create a custom image
 
 ## Frequently used commands 
 `kubectl apply -f <yaml file>`
+
 `kubectl logs --follow <pod name>`
+
 `kubectl exec <pod name> <linux command>`
+
 `kubectl delete -f <yaml file>`
+
 `kubectl get <nodes/pods/deployments/services>`
+
 `kubectl get/describe <type> <name>`
+
+`kubectl get pods -n <namespace name>`
+
+`kubectl apply -f <definition file> -n <namespace name>`
 
 > Installing CURL on openjdk images -  apk add --update && apk --no-cache add curl
 
@@ -55,7 +64,8 @@ where at least machine has to be a master, others can act as nodes
     -ExternalName
         - provides an end point to an external service like DB, other third-party application etc., It avoids hardcoding the endpoints of external URLs 
 - service discovery can be done with service name via TCP. While creating the service, a service name entry gets created into kubernetes DNS. we can 
-access the service with http://<service name>:<application port>ig
+access the service with http://<service name>:<application port>
+- If the service is created in a different namespace, Then the service can be accessed with http://<service name>.<namespace name>:<applicaiton port>   
   
 ## INGRESS
 https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal
@@ -84,3 +94,16 @@ http request path or  host name
     - can restart the job if the container fails for some reason
     - Ability to run scheduled jobs using CronJob resource
 
+## NAMESPACES
+- By default, all the resources in the kubernetes are created in a default namespace. 
+- If you want to organize the resources, you can create your resources in a different namespace
+
+## Resource requests and limits
+- In the POD definition, we can define resource requests to ensure how much memory and CPU that is required by your application
+to run. If there is a node that has the resources, the POD has requested, the POD is going to run, otherwise 
+  it will wait unit the resources become free or until a new node is added to the cluster.
+- Resource requests does not limit the resources the application is going to consume while running. To limit that, we need to 
+define the limits in the POD definition. Otherwise, a buggy application would impact other PODs in the node. 
+- You can also use LimitRange resource as an alternative to define resource requests and limits at the namespace level. However, 
+  these values can be overridden in your POD definition. PODs which does not have these values defined, is restricted by the values defined
+  in the LimitRange.
