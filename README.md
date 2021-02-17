@@ -71,11 +71,11 @@ http request path or  host name
 - ConfigMap is a type in kubernetes which is used to store key value pairs. 
 - You can also mount the configMap as files in the container. 
 
-#SECRET
+## SECRET
 - work in the same way as config maps. But, they will not be persisted. They will be stored encrypted in the master node. 
 - All the features that config map supports is supported by secret except the fact that the secret is stored in a secured manner.
 
-#JOB
+## JOB
 - Similar to deployment, used for running a specific task.
 - Container will be stopped once the task execution is completed, and the status of the container will be set as COMPLETED.
 - Job will also be marked as successful completion of tasks.
